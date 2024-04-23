@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Uditanshu saxena" />
+  <meta name="theme-color" content="#faebd7" />
+  <link href="./main.css" rel="stylesheet">
+  <title>NASA APOD API</title>
+</head>
+<body>
+  <main>
+    <h1 class="title">ASTRONOMY PICTURE OF THE DAY</h1>
+    <label for="dateInput">Choose a date:</label>
+    <input type="date" id="dateInput" onchange="getImg()" value="">
+    <br />
+    <img src="" id="bg"></img>
+    <br />
+    <p id="title"></p>
+    <p id="date"></p>
+    <h4 id="ale">A little explanation -</h4>
+    <p id="exp"></p>
+    <center><button><a id="dwnld" href="#">Download HD Image</a></button></center>
+    <h2>Space Missions</h2>
+    <ul id="spaceMissions"></ul>
+    <section id="contactUs">
+      <h2>Contact Us</h2>
+      <p>If you have any questions or feedback, feel free to reach out to us:</p>
+      <!-- Contact Us Button -->
+      <center><button><a href="contact us page.html">Contact Us</a></button></center>
+    </section>
+
+  </main>
+  <script>
+    const API = 'YnBsntyhJZ0BCjdopglqHAPZ2eYfOtRloE1XotGv';
+
+    async function getImg() {
+      const date = document.getElementById('dateInput').value;
+      const base_url = `https://api.nasa.gov/planetary/apod?api_key=${API}&date=${date}`;
+      const response = await fetch(base_url);
+      const data = await response.json(); // convert response into JSON
+      console.log(data); // log the data
+      // display data on frontend
+      document.getElementById("date").textContent = "Date: " + data.date;
+      document.getElementById("exp").textContent = data.explanation;
+      document.getElementById("title").textContent = data.title;
+      document.getElementById('bg').src = data.url;
+      document.getElementById('dwnld').href = data.hdurl;
+    }
+
+    // Fetch data for Space Missions
+    async function fetchSpaceMissions() {
+      const response = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers?api_key=${API}`);
+      const data = await response.json();
+      return data;
+    }
+
+    async function displaySpaceMissions() {
+      const spaceMissionsList = document.querySelector("#spaceMissions");
+      const spaceMissions = await fetchSpaceMissions();
+      spaceMissions.rovers.forEach(rover => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${rover.name}: ${rover.status}`;
+        spaceMissionsList.appendChild(listItem);
+      });
+    }
+    // Call functions to display content
+    getImg();
+    displaySpaceMissions();
+  </script>
+</body>
+</html>

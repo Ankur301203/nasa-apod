@@ -1,0 +1,99 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #000000;
+	font-family: 'Poppins', sans-serif;
+	color: #ffffff;
+}
+
+.container {
+	width: 80%;
+	margin: 50px auto;
+}
+
+h1 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+p {
+	margin-bottom: 40px;
+}
+
+.contact-box {
+	display: flex;
+}
+
+.contact-left {
+	flex: 1;
+	padding: 40px 60px;
+	background-color: #0e0e0e;
+}
+
+.contact-right {
+	flex: 1;
+	padding: 40px;
+	background-color: #1c00b5;
+	color: #ffffff;
+}
+
+.input-row {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.input-group {
+	flex: 1;
+	margin-right: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 6px;
+	color: #ffffff;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-bottom: 1px solid #ffffff;
+	background-color: transparent;
+	color: #ffffff;
+	margin-bottom: 20px;
+}
+
+textarea {
+	height: 150px;
+	resize: none;
+}
+
+button {
+	background-color: #4caf50;
+	color: #ffffff;
+	border: none;
+	padding: 12px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+table {
+	width: 100%;
+}
+
+table td:first-child {
+	font-weight: bold;
+	padding-right: 20px;
+}
